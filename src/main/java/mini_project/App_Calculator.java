@@ -49,12 +49,12 @@ public class App_Calculator
 		Scanner reader = new Scanner(System.in);
         System.out.println("Division");
         System.out.println("Enter two numbers");
-        System.out.print("Enter number 1: ");
+        System.out.print("Enter the numerator: ");
         num1 = reader.nextDouble();
-        System.out.print("Enter number 2: ");
+        System.out.print("Enter the denominator: ");
         num2 = reader.nextDouble();
         if(num2==0)
-        	System.out.println("Second Number cannot be zero... INVALID NUMBER");
+        	System.out.println("Denominator cannot be zero");
         else
            	System.out.println(num1/num2);  
 	}
