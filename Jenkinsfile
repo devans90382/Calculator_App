@@ -9,7 +9,7 @@ pipeline
             steps
             {
                 echo 'Pulling the Maven Git Repo'
-                git "https://github.com/devans90382/Calculator.git"
+                git "https://github.com/devans90382/Calculator_App.git"
             }
         }
 
