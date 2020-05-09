@@ -5,7 +5,7 @@ pipeline
         registry = "devans90382/docker-test"
         registryCredential = 'dockerhub'
         dockerImage = ''
-        dockerImageLatest = ''
+        //dockerImageLatest = ''
     }
     agent any
     stages
@@ -50,7 +50,7 @@ pipeline
                 script
                 {
                   dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                  dockerImageLatest = docker.build registry + ":latest"
+                  //dockerImageLatest = docker.build registry + ":latest"
                 }
             }
         }
@@ -63,18 +63,18 @@ pipeline
                     docker.withRegistry( '', registryCredential )
                     {
                         dockerImage.push()
-                        dockerImageLatest.push()
+                        //dockerImageLatest.push()
                     }
                 }
             }
         }
-        stage('Remove Unused Docker image')
+        /*stage('Remove Unused Docker image')
         {
             steps
             {
                 sh "docker rmi $registry:$BUILD_NUMBER"
             }
-        }
+        }*/
         stage("Running Calculator")
         {
             steps
