@@ -85,8 +85,7 @@ pipeline
         }*/
         stage('Deploy') {
         steps {
-    	  logstash{
-                script {
+            script {
                   step([$class: "RundeckNotifier",
                       includeRundeckLogs: true,
                       jobId: "5b60f402-d771-4aaa-a0e7-244cb4c85abe",
@@ -97,6 +96,5 @@ pipeline
                 }
            }
     	}
-     }
     }
 }
