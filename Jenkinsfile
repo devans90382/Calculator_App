@@ -75,13 +75,28 @@ pipeline
                 sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }*/
-        stage("Running Calculator")
+        /*stage("Running Calculator")
         {
             steps
             {
                 echo "Run the Calculator"
                 sh "java -cp target/mini_project-0.0.1-SNAPSHOT.jar mini_project/App_Calculator 5+5*7"
             }
-        }
+        }*/
+        stage('Deploy') {
+        steps {
+    	  logstash{
+                script {
+                  step([$class: "RundeckNotifier",
+                      includeRundeckLogs: true,
+                      jobId: "5b60f402-d771-4aaa-a0e7-244cb4c85abe",
+                      rundeckInstance: "Rundeck",
+                      shouldFailTheBuild: true,
+                      shouldWaitForRundeckJob: true,
+                      tailLog: true])
+                }
+           }
+    	}
+     }
     }
 }
