@@ -4,8 +4,8 @@ pipeline
     {
         registry = "devans90382/docker-test"
         registryCredential = 'dockerhub'
-        dockerImage = ''
-        //dockerImageLatest = ''
+        //dockerImage = ''
+        dockerImageLatest = ''
     }
     agent any
     stages
@@ -25,6 +25,14 @@ pipeline
             {
                 echo "Cleaning the project"
                 sh " mvn clean"
+            }
+        }
+        stage("Test")
+        {
+            steps
+            {
+                echo "Testing The Project"
+                sh "mvn test"
             }
         }
         stage("Package")
@@ -49,8 +57,8 @@ pipeline
             {
                 script
                 {
-                  dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                  //dockerImageLatest = docker.build registry + ":latest"
+                  //dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                  dockerImageLatest = docker.build registry + ":latest"
                 }
             }
         }
@@ -62,8 +70,8 @@ pipeline
                 {
                     docker.withRegistry( '', registryCredential )
                     {
-                        dockerImage.push()
-                        //dockerImageLatest.push()
+                        //dockerImage.push()
+                        dockerImageLatest.push()
                     }
                 }
             }
